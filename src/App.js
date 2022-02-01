@@ -2,6 +2,8 @@ import React,{useRef,useState,useReducer} from "react";
 import "./style.css";
 
 const initialState={count:0};
+
+//creating useReducer()
 function reducer(state,action)
 {
   switch(action.type)
@@ -16,13 +18,17 @@ function reducer(state,action)
 }
 
 export default function App() {
-  const [state,dispatch]=useReducer(reducer,initialState);
   let [count,setCount]=useState(0);
+
+  //useRef working
   const inputRef=useRef('');
   const clickHandel =()=>{
     console.log(inputRef.current.value,count);
     setCount(count+2);
   };
+
+  // useReducer destructure
+  const [state,dispatch]=useReducer(reducer,initialState);
 
   return (
     <div>
@@ -30,6 +36,7 @@ export default function App() {
       <p>Start editing to see some magic happen :)</p>
 
       <p>
+        {/* useRef used in input field */}
         <input type="text" ref={inputRef} />
         <button onclick={clickHandel}>Click Me</button>
       </p>
